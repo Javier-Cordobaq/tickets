@@ -1,11 +1,14 @@
-import { TicketLayout } from "../../../styled-components"
+import { NoDocuments, TicketLayout } from "../../../styled-components"
+import { HiOutlineTicket } from "react-icons/hi";
+import { PaleteColors } from "../../../palete-colors/palete-colors";
 
 const AllTickets = ({ tickets }) => {
+    console.log(tickets, 'All Tickets Component')
     return (
         <>
             {
-                tickets !== null && tickets.length !== 0 ?
-                    tickets.map(c => (
+                tickets !== null ?
+                    tickets?.map(c => (
                         <TicketLayout>
                             <div className='ticket'>
                                 <p>{c.name}</p>
@@ -26,7 +29,12 @@ const AllTickets = ({ tickets }) => {
                                 </div>
                             </div>
                         </TicketLayout>
-                    )) : <p>Aun no tienes Turnos.</p>
+                    ))
+                    :
+                    <NoDocuments style={{ color: `${PaleteColors.SECONDARY_GRAY}` }}>
+                        <HiOutlineTicket className="files_icon" />
+                        <p>Aun no tienes Turnos.</p>
+                    </NoDocuments>
             }
         </>
     )

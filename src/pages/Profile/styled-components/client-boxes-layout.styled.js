@@ -13,7 +13,7 @@ export const ClientBoxesLayout = styled.div`
     width: 100%;
     height: auto;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 
     .card {
         border: 1px solid ${PaleteColors.BACKGROUND_COLOR};
@@ -25,7 +25,6 @@ export const ClientBoxesLayout = styled.div`
         width: 100%;
         cursor: pointer;
         &:hover {
-            background-color: ${PaleteColors.SECONDARY_GRAY};
             border: 1px solid ${PaleteColors.PRIMARY_BLUE};
         }
     }

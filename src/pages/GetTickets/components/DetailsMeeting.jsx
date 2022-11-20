@@ -20,7 +20,7 @@ const DetailsMeeting = ({ id, type, getTicket }) => {
             </div>
             <div className='row'>
                 <p className='title'>Modo.</p>
-                <p>{type}</p>
+                <p>{type.type}</p>
             </div>
             <div>
                 <Link to={`${PrivateRoutes.PRIVATE}${PrivateRoutes.GET_TICKETS}/${id}/ticket`}>

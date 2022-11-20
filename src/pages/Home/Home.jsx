@@ -1,13 +1,15 @@
-import MenuButtons from "./components/MenuButtons"
 import { ResponsiveLayout } from "../../styled-components"
+import { CarouselOptions, MenuButtons } from "./components"
+import { HomeLayout } from "./styled-components"
 
 const Home = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <ResponsiveLayout>
+      <HomeLayout>
         <MenuButtons />
-      </ResponsiveLayout>
+        <CarouselOptions />
+      </HomeLayout>
     </div>
   )
 }

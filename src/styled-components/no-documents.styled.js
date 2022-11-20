@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PaleteColors } from "../../../palete-colors/palete-colors";
+import { PaleteColors } from "../palete-colors/palete-colors";
 
 export const NoDocuments = styled.div`
 

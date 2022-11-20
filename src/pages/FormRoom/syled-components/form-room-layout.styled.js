@@ -40,11 +40,9 @@ export const FormRoomLayout = styled.div`
         padding: 0.5rem 2rem;
         transition: 0.2s all;
         cursor: pointer;
-        box-shadow: 0 0 10px ${PaleteColors.PRIMARY_BLUE};
         font-weight: bold;
         &:hover {
             background-color: ${PaleteColors.SECONDARY_BLUE};
-            box-shadow: 0 0 10px ${PaleteColors.SECONDARY_BLUE};
         }
     }
 

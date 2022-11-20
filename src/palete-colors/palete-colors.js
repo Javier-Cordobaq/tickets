@@ -3,5 +3,11 @@ export const PaleteColors = {
     SECONDARY_BLUE: '#264653',
     BACKGROUND_COLOR: '#27262C',
     SECONDARY_GRAY: '#3B3642',
+    THIRD_GRAY: '#2D3138',
+    LIGHT_GRAY: '#484559',
+    ORANGE_PRIMARY: '#FFB224',
+    ORANGE_SECONDARY: '#271700',
+    PRIMARY_RED: '#d90429',
+    SECONDARY_RED: '#540b0e',
     WHITE: 'white'
 }

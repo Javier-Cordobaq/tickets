@@ -8,6 +8,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     padding: 0.8rem 1.5rem;
     border-radius: 2rem;
+    font-size: 1rem;
     outline: none;
     color: ${PaleteColors.WHITE};
 

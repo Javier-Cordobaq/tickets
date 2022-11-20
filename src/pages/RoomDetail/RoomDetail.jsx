@@ -11,13 +11,18 @@ import { PaleteColors } from '../../palete-colors/palete-colors';
 import { FiDownload } from "react-icons/fi";
 import TableUsers from './components/TableUsers';
 import { getRoomDetailsService } from './services';
+import AddCashier from './components/AddCashier';
+import { SharingMethods } from './components';
 
 const RoomDetail = () => {
 
+  // States
   const [users, setUsers] = useState(null)
-  const [roomId, setRoomId] = useState(null)
-  const { id } = useParams();
+  const [room, setRoom] = useState(null)
   const [qrcode, setQRCode] = useState('')
+  const [window, setWindow] = useState(false)
+
+  const { id } = useParams();
   const url = `${PrivateRoutes.PRIVATE}${PrivateRoutes.GET_TICKETS}/${id}/home`
 
   const generateQRCode = () => {
@@ -40,7 +45,7 @@ const RoomDetail = () => {
   const getRoomDetail = async () => {
     const roomDetail = await getRoomDetailsService(id)
     try {
-      setRoomId(roomDetail.data)
+      setRoom(roomDetail.data[0])
     }
     catch (err) {
       console.error(err.message)
@@ -59,41 +64,41 @@ const RoomDetail = () => {
         position='bottom-center'
       />
       <RoomDetailLayout>
-        <div>
-          <h1>Room Details.</h1>
-          <p>Room name: </p>
+        <div className='details_shareMethods'>
 
-        </div>
-        <div>
-          <p>Puedes compartir el <strong>codigo QR</strong> o compartir <strong>el link</strong> para que las personas saquen su turno.</p>
-          <Link to={url}>Link</Link>
-        </div>
-        <div>
-          <h2>QR.</h2>
-          <img src={qrcode} alt='' />
-          <Button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Descargar <FiDownload /></Button>
-        </div>
-        <div className='link_container'>
-          <div>
-            <h2>Copiar Link.</h2>
+          <div className='section'>
+            <h1>Room Details.</h1>
+            <Link to={`${PrivateRoutes.PRIVATE}${PrivateRoutes.SHIFTS_ORDERED}/${room?.roomId}`}>
+              <p style={{ color: '#000010' }}><strong>Vista turnos</strong></p>
+            </Link>
+            <p>Room name: {room?.name}</p>
+            <p>Cantidad tickets: {users?.length}</p>
           </div>
-          <p>{url}</p>
-          <CopyToClipboard text={`http://localhost:5173${url}`}>
-            <Button onClick={() => toast('Se copio el link',
-              {
-                icon: '👍',
-                style: {
-                  borderRadius: '2rem',
-                  background: `${PaleteColors.PRIMARY_BLUE}`,
-                  boxShadow: `0 0 10px ${PaleteColors.PRIMARY_BLUE}`,
-                  color: '#fff',
-                },
-              })}>Copiar Link</Button>
-          </CopyToClipboard>
+
+          <div className='share_cashiers_section section'>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <h1>Compartir.</h1>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <Button onClick={() => setWindow(!window)}>Compartir.</Button>
+                  <Button onClick={() => setWindow(!window)}>Cajeros.</Button>
+                </div>
+              </div>
+            </div>
+            {
+              window === false ?
+                <SharingMethods qrcode={qrcode} url={url} />
+                :
+                <AddCashier room={room} />
+            }
+          </div>
         </div>
+
         <div className='table_container'>
+          <h1>Tabla turnos.</h1>
           <TableUsers users={users} />
         </div>
+
       </RoomDetailLayout>
     </div>
   )

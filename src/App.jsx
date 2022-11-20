@@ -6,12 +6,10 @@ import { PublicRoutes, PrivateRoutes } from './guards'
 import Private from './pages/Private/Private'
 import { useEffect, Suspense } from 'react'
 import { supabase } from './supabase/client'
-import Home from './pages/Home/Home'
-import GetTickets from './pages/GetTickets/GetTickets'
 import Nav from './components/Nav'
 import { useDispatch } from 'react-redux'
 import { setUser } from './redux/actions'
-import Spinner from './components/Spinner'
+import NotFound from './components/NotFound'
 
 function App() {
 
@@ -42,7 +40,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Navigate to={PrivateRoutes.PRIVATE} />} />
           <Route path={PublicRoutes.LOGIN} element={<Login />} />
-          <Route path='*' element={<>Not Found 404</>} />
+          <Route path='*' element={<NotFound />} />
           <Route element={<AuthGuard />}>
             <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
           </Route>

@@ -4,12 +4,13 @@ const TableUsers = ({ users }) => {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },
-        { field: 'name', headerName: 'Name', width: 130 },
+        { field: 'name', headerName: 'Name', width: 200 },
         { field: 'documentNumber', headerName: 'Número de documento', width: 130 },
         { field: 'meetType', headerName: 'Modo reunion', width: 130 },
+        { field: 'shift', headerName: 'Turno', width: 130 },
     ];
 
-    const rows = users?.map(c => ({  id: c.id, name: c.name, documentNumber: c.documentNumber, meetType: c.meetType }))
+    const rows = users?.map(c => ({ id: c.id, name: c.name, documentNumber: c.documentNumber, meetType: c.meetType, shift: c.shiftLetter + c.shiftNumber }))
 
     return (
         <div style={{ height: '100%', width: '100%' }}>
@@ -19,7 +20,7 @@ const TableUsers = ({ users }) => {
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
-                    style={{color: 'white'}}
+                    style={{ color: 'white' }}
                     localeText={{
                         toolbarDensity: 'Size',
                         toolbarDensityLabel: 'Size',
